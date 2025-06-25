@@ -1,0 +1,49 @@
+{
+  "name": "resume-screening-app",
+  "version": "1.0.0",
+  "description": "AI-powered resume screening and job category classification web application",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "resume",
+    "screening",
+    "classification", 
+    "nlp",
+    "job-categories",
+    "ai",
+    "ml",
+    "javascript",
+    "static-site"
+  ],
+  "author": "Resume Screening App",
+  "license": "MIT",
+  "homepage": "https://github.com/your-username/resume-screening-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/resume-screening-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/resume-screening-app/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not dead"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "files": [
+    "index.html",
+    "style.css", 
+    "app.js",
+    "README.md",
+    "netlify.toml"
+  ]
+}

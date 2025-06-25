@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeClassify - AI-Powered Resume Screening</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header__content">
+                    <h1 class="header__title">ResumeClassify</h1>
+                    <p class="header__subtitle">AI-Powered Resume Screening & Job Category Classification</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <!-- Landing Section -->
+                <section id="landing-section" class="landing">
+                    <div class="landing__hero">
+                        <h2>Transform Your Resume Analysis Process</h2>
+                        <p>Upload your resume and get instant classification across 25+ job categories with detailed insights, skill analysis, and improvement suggestions.</p>
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">📄</div>
+                                <h3>Smart Text Extraction</h3>
+                                <p>Extract and analyze text from PDF and text files with advanced parsing</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🎯</div>
+                                <h3>25+ Job Categories</h3>
+                                <p>Classify resumes across diverse categories from Data Science to HR</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📊</div>
+                                <h3>Detailed Analytics</h3>
+                                <p>Get comprehensive insights with confidence scores and skill matching</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">💡</div>
+                                <h3>Enhancement Tips</h3>
+                                <p>Receive actionable suggestions to improve your resume for target roles</p>
+                            </div>
+                        </div>
+                        <button class="btn btn--primary btn--lg" onclick="scrollToUpload()">Start Analysis</button>
+                    </div>
+                </section>
+
+                <!-- Upload Section -->
+                <section id="upload-section" class="upload-section">
+                    <div class="upload-container">
+                        <h2>Upload Your Resume</h2>
+                        <p>Support for PDF and text files up to 10MB</p>
+                        
+                        <div class="upload-area" id="upload-area">
+                            <div class="upload-content">
+                                <div class="upload-icon">📁</div>
+                                <h3>Drag & Drop Your Resume</h3>
+                                <p>or <button class="upload-btn" onclick="document.getElementById('file-input').click()">browse files</button></p>
+                                <input type="file" id="file-input" accept=".pdf,.txt" hidden>
+                            </div>
+                        </div>
+
+                        <div id="file-info" class="file-info hidden">
+                            <div class="file-details">
+                                <span id="file-name"></span>
+                                <span id="file-size"></span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-fill"></div>
+                                </div>
+                                <span id="progress-text">0%</span>
+                            </div>
+                        </div>
+
+                        <div id="processing-status" class="processing-status hidden">
+                            <div class="status-item">
+                                <span class="status-icon" id="extract-status">⏳</span>
+                                <span>Extracting text from file...</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-icon" id="clean-status">⏳</span>
+                                <span>Cleaning and processing text...</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-icon" id="analyze-status">⏳</span>
+                                <span>Analyzing and classifying resume...</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Results Section -->
+                <section id="results-section" class="results-section hidden">
+                    <div class="results-header">
+                        <h2>Analysis Results</h2>
+                        <button class="btn btn--secondary" onclick="resetApplication()">Analyze Another Resume</button>
+                    </div>
+
+                    <!-- Top Matches -->
+                    <div class="card results-card">
+                        <div class="card__header">
+                            <h3>Top Job Category Matches</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="chart-container">
+                                <canvas id="results-chart"></canvas>
+                            </div>
+                            <div id="top-matches" class="top-matches"></div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Analysis -->
+                    <div class="analysis-grid">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Extracted Information</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="info-section">
+                                    <h4>Skills Found</h4>
+                                    <div id="skills-list" class="skills-container"></div>
+                                </div>
+                                <div class="info-section">
+                                    <h4>Key Metrics</h4>
+                                    <div id="metrics-list" class="metrics-container"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>Enhancement Suggestions</h3>
+                            </div>
+                            <div class="card__body">
+                                <div id="suggestions-list" class="suggestions-container"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Comparison -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Category Comparison</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="category-selector">
+                                <label for="category-select" class="form-label">Compare with category:</label>
+                                <select id="category-select" class="form-control">
+                                    <option value="">Select a category...</option>
+                                </select>
+                            </div>
+                            <div id="category-comparison" class="category-comparison hidden"></div>
+                        </div>
+                    </div>
+
+                    <!-- Export Section -->
+                    <div class="export-section">
+                        <button class="btn btn--primary" onclick="exportResults()">Download Analysis Report</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 ResumeClassify. Built with modern web technologies for instant resume analysis.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
