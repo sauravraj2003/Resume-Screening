@@ -44,67 +44,6 @@ ResumeClassify is a comprehensive, client-side web application that provides int
 - **Export Results**: Download detailed analysis reports
 - **Fast & Smooth**: Optimized for speed and performance
 
-## Technology Stack
-
-- **Frontend**: HTML5, CSS3 (CSS Grid/Flexbox), Vanilla JavaScript
-- **PDF Processing**: PDF.js for client-side PDF text extraction
-- **Data Visualization**: Chart.js for interactive charts and graphs
-- **NLP Processing**: Custom keyword matching and text analysis algorithms
-- **Deployment**: Netlify-ready static site (no backend required)
-
-## Quick Start
-
-### Option 1: Netlify Deploy (Recommended)
-1. Download the application files
-2. Create a new site on [Netlify](https://netlify.com)
-3. Drag and drop the project folder to Netlify
-4. Your app will be live instantly!
-
-### Option 2: Local Development
-```bash
-# Clone or download the files
-# Serve with any local server (e.g., Python's built-in server)
-python -m http.server 8000
-# Open http://localhost:8000 in your browser
-```
-
-## File Structure
-
-```
-resume-screening-app/
-├── index.html          # Main application page
-├── style.css           # Complete styling and responsive design
-├── app.js              # Core application logic and algorithms
-├── README.md           # This documentation file
-└── netlify.toml        # Netlify configuration (optional)
-```
-
-## How It Works
-
-### 1. **File Upload & Text Extraction**
-- Users upload PDF or text files via drag-and-drop or file picker
-- PDF.js library extracts text content while preserving structure
-- Text is cleaned and preprocessed for analysis
-
-### 2. **Intelligent Classification**
-- Resume text is analyzed against comprehensive keyword databases
-- Each of the 25 job categories has 20-30 relevant keywords
-- Advanced scoring algorithm considers keyword frequency, context, and relevance
-- Results are ranked by confidence scores
-
-### 3. **Detailed Analysis**
-- **Skills Identification**: Extract and categorize technical and soft skills
-- **Experience Parsing**: Identify work history, education, certifications
-- **Contact Extraction**: Parse names, emails, phone numbers, addresses
-- **Gap Analysis**: Compare against target job requirements
-
-### 4. **Results & Recommendations**
-- Interactive dashboard showing top matching categories
-- Detailed breakdown of found vs. missing keywords
-- Personalized suggestions for resume improvement
-- Export functionality for detailed reports
-
-## Supported Resume Formats
 
 - **PDF Files**: Supports most PDF formats with extractable text
 - **Text Files**: Plain text (.txt) format
@@ -156,19 +95,7 @@ resume-screening-app/
 - **Salary Insights**: Integrate market salary data
 - **Skills Trending**: Real-time skill demand analytics
 
-## Contributing
 
-This is an open-source project. Contributions are welcome!
-
-1. Fork the repository
-2. Create your feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-MIT License - feel free to use this project for personal or commercial purposes.
 
 ## Support
 
